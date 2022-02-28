@@ -3,7 +3,7 @@ package com.grv.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.grv.service.GreetingServiceImpl;
+import com.grv.service.ConstructorGreetingService;
 
 public class PropertyInjectedControllerTest {
 	
@@ -12,7 +12,7 @@ public class PropertyInjectedControllerTest {
 	@BeforeEach
 	void setUp() {
 		propertyInjectedController = new PropertyInjectedController();
-		propertyInjectedController.greetingService = new GreetingServiceImpl();
+		propertyInjectedController.greetingService = new ConstructorGreetingService();
 	}
 	
 	@Test
