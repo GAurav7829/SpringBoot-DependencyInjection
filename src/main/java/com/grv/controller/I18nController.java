@@ -1,19 +1,19 @@
 package com.grv.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import com.grv.service.GreetingService;
 
 @Controller
-public class MyController {
-	
+public class I18nController {
 	private final GreetingService greetingService;
-	
-	public MyController(GreetingService greetingService) {
+
+	public I18nController(@Qualifier("i18nService") GreetingService greetingService) {
 		super();
 		this.greetingService = greetingService;
 	}
-
+	
 	public String sayHello() {
 		return greetingService.sayGreeting();
 	}
