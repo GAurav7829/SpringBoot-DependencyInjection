@@ -1,8 +1,7 @@
 package com.grv.service;
 
-import org.springframework.stereotype.Service;
-
-@Service
+//@Service
+//added bean in GreetingServiceConfig class
 public class SetterBasedGreetingService implements GreetingService {
 
 	@Override

@@ -3,6 +3,7 @@ package com.grv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.grv.controller.ConstructorInjectedController;
 import com.grv.controller.I18nController;
@@ -11,6 +12,8 @@ import com.grv.controller.PropertyInjectedController;
 import com.grv.controller.SetterInjectedController;
 
 @SpringBootApplication
+//by default spring scans the package 'com.grv', we need to specify other package to scan to get the classes
+@ComponentScan(basePackages = {"com.i18n","com.grv"})
 public class SpringBootDependencyInjectionApplication {
 
 	public static void main(String[] args) {

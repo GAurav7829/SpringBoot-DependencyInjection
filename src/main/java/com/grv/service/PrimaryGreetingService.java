@@ -1,10 +1,8 @@
 package com.grv.service;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-
-@Service
-@Primary
+//@Service
+//@Primary
+//added bean in GreetingServiceConfig class
 public class PrimaryGreetingService implements GreetingService {
 	@Override
 	public String sayGreeting() {
