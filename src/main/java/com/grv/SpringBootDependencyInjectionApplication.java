@@ -10,6 +10,8 @@ import com.grv.controller.I18nController;
 import com.grv.controller.MyController;
 import com.grv.controller.PropertyInjectedController;
 import com.grv.controller.SetterInjectedController;
+import com.grv.service.ProtoptypeBean;
+import com.grv.service.SingletonBean;
 
 @SpringBootApplication
 //by default spring scans the package 'com.grv', we need to specify other package to scan to get the classes
@@ -39,6 +41,19 @@ public class SpringBootDependencyInjectionApplication {
 		//Profile set in application.properties
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println(i18nController.sayHello());
+		
+		System.out.println("----- BEAN SCOPES -------------------");
+		System.out.println("SingletonBean------------------------");
+		SingletonBean singletonBean1 = (SingletonBean) ctx.getBean("singletonBean");
+		System.out.println(singletonBean1.getMyScope());
+		SingletonBean singletonBean2 = (SingletonBean) ctx.getBean("singletonBean");
+		System.out.println(singletonBean2.getMyScope());
+		
+		System.out.println("PrototypeBean------------------------");
+		ProtoptypeBean protoptypeBean1 = ctx.getBean(ProtoptypeBean.class); 
+		System.out.println(protoptypeBean1.getMyScope());
+		ProtoptypeBean protoptypeBean2 = ctx.getBean(ProtoptypeBean.class); 
+		System.out.println(protoptypeBean2.getMyScope());
 	}
 
 }
