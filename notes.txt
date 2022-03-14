@@ -1,0 +1,5 @@
+Environment Var:	#overrides datasource.properties
+	com_grv_username=UserFromEnvVar
+
+Program Args:		#overrides Environment Var
+	--com.grv.passowrd=PwdFromCommandLine

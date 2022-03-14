@@ -10,50 +10,60 @@ import com.grv.controller.I18nController;
 import com.grv.controller.MyController;
 import com.grv.controller.PropertyInjectedController;
 import com.grv.controller.SetterInjectedController;
+import com.grv.datasource.FakeDataSource;
 import com.grv.service.ProtoptypeBean;
 import com.grv.service.SingletonBean;
 
 @SpringBootApplication
 //by default spring scans the package 'com.grv', we need to specify other package to scan to get the classes
-@ComponentScan(basePackages = {"com.i18n","com.grv"})
+@ComponentScan(basePackages = { "com.i18n", "com.grv" })
 public class SpringBootDependencyInjectionApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringBootDependencyInjectionApplication.class, args);
-		
+
 		System.out.println("Primary bean-------------------------");
 		MyController controller = (MyController) ctx.getBean("myController");
 		System.out.println(controller.sayHello());
-		
+
 		System.out.println("Property based DI--------------------");
-		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
+		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx
+				.getBean("propertyInjectedController");
 		System.out.println(propertyInjectedController.getGreeting());
-		
+
 		System.out.println("Setter based DI----------------------");
-		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
+		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx
+				.getBean("setterInjectedController");
 		System.out.println(setterInjectedController.getGreeting());
-		
+
 		System.out.println("Constructor based DI-----------------");
-		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
+		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx
+				.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
-		
+
 		System.out.println("Spring Profile-----------------------");
-		//Profile set in application.properties
+		// Profile set in application.properties
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println(i18nController.sayHello());
-		
+
 		System.out.println("----- BEAN SCOPES -------------------");
 		System.out.println("SingletonBean------------------------");
 		SingletonBean singletonBean1 = (SingletonBean) ctx.getBean("singletonBean");
 		System.out.println(singletonBean1.getMyScope());
 		SingletonBean singletonBean2 = (SingletonBean) ctx.getBean("singletonBean");
 		System.out.println(singletonBean2.getMyScope());
-		
+
 		System.out.println("PrototypeBean------------------------");
-		ProtoptypeBean protoptypeBean1 = ctx.getBean(ProtoptypeBean.class); 
+		ProtoptypeBean protoptypeBean1 = ctx.getBean(ProtoptypeBean.class);
 		System.out.println(protoptypeBean1.getMyScope());
-		ProtoptypeBean protoptypeBean2 = ctx.getBean(ProtoptypeBean.class); 
+		ProtoptypeBean protoptypeBean2 = ctx.getBean(ProtoptypeBean.class);
 		System.out.println(protoptypeBean2.getMyScope());
+
+		System.out.println("FakeDatasource-----------------------");
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println("FakeDatasource username: " + fakeDataSource.getUsername());
+		System.out.println("FakeDatasource password: " + fakeDataSource.getPassword());
+		System.out.println("FakeDatasource jdbcUrl: " + fakeDataSource.getJdbcUrl());
 	}
 
 }
