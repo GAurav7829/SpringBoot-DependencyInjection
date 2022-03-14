@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.grv.config.SBDIConfiguration;
 import com.grv.controller.ConstructorInjectedController;
 import com.grv.controller.I18nController;
 import com.grv.controller.MyController;
@@ -64,6 +65,12 @@ public class SpringBootDependencyInjectionApplication {
 		System.out.println("FakeDatasource username: " + fakeDataSource.getUsername());
 		System.out.println("FakeDatasource password: " + fakeDataSource.getPassword());
 		System.out.println("FakeDatasource jdbcUrl: " + fakeDataSource.getJdbcUrl());
+
+		System.out.println("Config Props Bean-------------------");
+		SBDIConfiguration sbdiConfiguration = ctx.getBean(SBDIConfiguration.class);
+		System.out.println("username: " + sbdiConfiguration.getUsername());
+		System.out.println("password: " + sbdiConfiguration.getPassword());
+		System.out.println("url: " + sbdiConfiguration.getJdbcUrl());
 	}
 
 }

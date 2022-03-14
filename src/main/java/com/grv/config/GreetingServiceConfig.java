@@ -25,7 +25,7 @@ public class GreetingServiceConfig {
 	//get datasource value from external properties file
 	@Bean
 	FakeDataSource fakeDataSource(@Value("${com.grv.username}") String username,
-			@Value("${com.grv.passowrd}") String password, @Value("${com.grv.jdbcUrl}") String jdbcUrl) {
+			@Value("${com.grv.password}") String password, @Value("${com.grv.jdbcUrl}") String jdbcUrl) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
 		fakeDataSource.setUsername(username);
 		fakeDataSource.setPassword(password);
