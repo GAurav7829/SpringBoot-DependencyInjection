@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.grv.config.ConstructorBasedConfiguration;
 import com.grv.config.SBDIConfiguration;
 import com.grv.controller.ConstructorInjectedController;
 import com.grv.controller.I18nController;
@@ -71,6 +72,12 @@ public class SpringBootDependencyInjectionApplication {
 		System.out.println("username: " + sbdiConfiguration.getUsername());
 		System.out.println("password: " + sbdiConfiguration.getPassword());
 		System.out.println("url: " + sbdiConfiguration.getJdbcUrl());
+		
+		System.out.println("Constructor Binding-----------------");
+		ConstructorBasedConfiguration constructorBasedConfiguration = ctx.getBean(ConstructorBasedConfiguration.class);
+		System.out.println("username: " + constructorBasedConfiguration.getUsername());
+		System.out.println("password: " + constructorBasedConfiguration.getPassword());
+		System.out.println("url: " + constructorBasedConfiguration.getJdbcUrl());
 	}
 
 }

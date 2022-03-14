@@ -1,6 +1,7 @@
 package com.grv.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -21,15 +22,24 @@ import com.i18n.I18nGreetingServiceFactory;
 @ImportResource("classpath:di-config.xml")
 //@PropertySource("classpath:datasource.properties")//add external properties file
 //added in application.properties
+@EnableConfigurationProperties(ConstructorBasedConfiguration.class)
 public class GreetingServiceConfig {
 	//get datasource value from external properties file
+//	@Bean
+//	FakeDataSource fakeDataSource(@Value("${com.grv.username}") String username,
+//			@Value("${com.grv.password}") String password, @Value("${com.grv.jdbcUrl}") String jdbcUrl) {
+//		FakeDataSource fakeDataSource = new FakeDataSource();
+//		fakeDataSource.setUsername(username);
+//		fakeDataSource.setPassword(password);
+//		fakeDataSource.setJdbcUrl(jdbcUrl);
+//		return fakeDataSource;
+//	}
 	@Bean
-	FakeDataSource fakeDataSource(@Value("${com.grv.username}") String username,
-			@Value("${com.grv.password}") String password, @Value("${com.grv.jdbcUrl}") String jdbcUrl) {
+	FakeDataSource fakeDataSource(ConstructorBasedConfiguration configuration) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
-		fakeDataSource.setUsername(username);
-		fakeDataSource.setPassword(password);
-		fakeDataSource.setJdbcUrl(jdbcUrl);
+		fakeDataSource.setUsername(configuration.getUsername());
+		fakeDataSource.setPassword(configuration.getPassword());
+		fakeDataSource.setJdbcUrl(configuration.getJdbcUrl());
 		return fakeDataSource;
 	}
 
